@@ -11,10 +11,11 @@
         <h1 style="text-align:center;">Rock, Paper, Scissors!</h1>
         <p style="text-align: center;" class="gameplay">
         <input type="text" id="choiceField" class="choiceField">
-        <input type="button" onclick="playRound()" value="Go!" class="guessSubmit">
+        <input type="button" onclick="gameScore()" value="Go!" class="guessSubmit">
         </p>
-        <div id="results" style="text-align: center;">  </div>
-        <div id="score" style="text-align: center;"> 
+        <div id="results" style="text-align: center;  height: 30px;">  </div>
+        <div id="score" style="text-align: center; max-width: fit-content; margin-left: auto;
+        margin-right: auto; background-color: antiquewhite;"> 
         YOUR WINS: <span id="myWins"></span><br>
         DRAWS:<span id="draws"></span><br>
         COMPUTER WINS:<span id="pcWins"></span><br>
