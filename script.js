@@ -50,7 +50,7 @@ function gameScore(){
         draws++;
         document.getElementById('draws').innerHTML = draws;
         return
-      } else {
+      } else if (result== -1) {
         pcWins++;
         document.getElementById("pcWins").innerHTML = pcWins;
         return
