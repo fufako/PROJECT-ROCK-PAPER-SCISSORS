@@ -9,11 +9,15 @@ document.querySelectorAll("#player-choices > img").forEach((element) => {
   element.addEventListener("click", (event) => {
     const choice = event.target.id
     const pcChoice = Math.floor(Math.random() * 3)
-    playRound(choice, pcChoice)
-    changeContent(choice, pcChoice)
+    playGame(choice, pcChoice)
   })
 })
-function playGame() {}
+
+function playGame(choice, pcChoice) {
+  playRound(choice, pcChoice)
+  changeContent(choice, pcChoice)
+  setTimeout(reset, 2000)
+}
 
 function playRound(choice, pcChoice) {
   const result = document.getElementById("round-result")
@@ -44,11 +48,42 @@ function changeContent(choice, pcChoice) {
 }
 
 function updateScoreBoard(winner) {
-  const playerPoints = document.getElementById("point")
-  const pcPoints = document.getElementById("pc-point")
   if (winner == "player") {
-    playerPoints.src = "img/star_point.png"
+    addPlayerPoints()
   } else if (winner == "pc") {
-    pcPoints.src = "img/star_point.png"
+    addPcPoints()
   }
+}
+
+function addPlayerPoints() {
+  const playerPoints = document.querySelectorAll("#player-points > img")
+  for (point of playerPoints) {
+    if (point.src != "img/star_point.png") {
+      point.src = "img/star_point.png"
+      break
+    }
+  }
+}
+function addPcPoints() {
+  const pcPoints = document.querySelectorAll("#pc-points > img")
+  for (point of pcPoints) {
+    if (point.src != "img/star_point.png") {
+      point.src = "img/star_point.png"
+      break
+    }
+  }
+}
+
+function reset() {
+  const playerPick = document.getElementById("player-info")
+  const playerWeapon = document.getElementById("player-choices")
+  const pcPick = document.getElementById("pc-info")
+  const pcWeapon = document.getElementById("pc-choices")
+  const result = document.getElementById("round-result")
+  playerWeapon.innerHTML =
+    '<img src="img/rock.png" alt="rock" id="rock" /> <img src="img/paper.png" alt="paper" id="paper" /> <img src="img/scissors.png" alt="scissors" id="scissors" /> '
+  playerPick.textContent = "Make your pick"
+  pcPick.textContent = "Waiting for the opponent"
+  pcWeapon.innerHTML = '<div class="loader"></div> '
+  result.textContent = ""
 }
