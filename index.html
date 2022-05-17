@@ -1,26 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <script src="script.js"></script>
+    <meta charset="utf-8" />
+    <script src="script.js" defer></script>
+    <link rel="stylesheet" href="style.css" />
     <title>Rock, Paper, Scissors!</title>
   </head>
 
-    <body>
+  <body>
+    <h1 style="text-align: center">Rock, Paper, Scissors!</h1>
 
-        <h1 style="text-align:center;">Rock, Paper, Scissors!</h1>
-        <p style="text-align: center;" class="gameplay">
-        <input type="text" id="choiceField" class="choiceField">
-        <input type="button" onclick="gameScore()" value="Go!" class="guessSubmit">
-        </p>
-        <div id="results" style="text-align: center;  height: 30px;">  </div>
-        <div id="score" style="text-align: center; max-width: fit-content; margin-left: auto;
-        margin-right: auto; background-color: antiquewhite;"> 
-        YOUR WINS: <span id="myWins"></span><br>
-        DRAWS:<span id="draws"></span><br>
-        COMPUTER WINS:<span id="pcWins"></span><br>
-        
+    <div id="container">
+      <div id="score-container">
+        <div id="player-points">
+          <h2 id="score-header">Your score</h2>
+          <img src="img/star.png" alt="point" id="point" />
+          <img src="img/star.png" alt="point" id="point" />
+          <img src="img/star.png" alt="point" id="point" />
         </div>
-    </body>
+        <div id="pc-points">
+          <h2 id="score-header">Opponent's score</h2>
+          <img src="img/star.png" alt="point" id="pc-point" />
+          <img src="img/star.png" alt="point" id="pc-point" />
+          <img src="img/star.png" alt="point" id="pc-point" />
+        </div>
+      </div>
 
+      <div id="choices-container">
+        <div id="player-choices">
+          <img src="img/rock.png" alt="rock" id="rock" />
+          <img src="img/paper.png" alt="paper" id="paper" />
+          <img src="img/scissors.png" alt="scissors" id="scissors" />
+        </div>
+        <div id="pc-choices">
+          <div class="loader"></div>
+        </div>
+      </div>
+
+      <div id="info-container">
+        <div id="player-info">Make your pick</div>
+        <div id="pc-info">Waiting for the opponent</div>
+      </div>
+      <div id="round-result"></div>
+    </div>
+  </body>
 </html>
