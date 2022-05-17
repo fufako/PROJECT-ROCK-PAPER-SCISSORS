@@ -51,8 +51,8 @@ img {
 #round-result {
   font-size: 30px;
 }
-#point,
-#pc-point {
+#noPoint,
+#point {
   width: 10%;
 }
 

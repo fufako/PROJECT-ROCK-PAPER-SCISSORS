@@ -26,13 +26,17 @@ function playRound(choice, pcChoice) {
   if (weakStrong[choice].strongTo === weapons[pcChoice]) {
     playerScore += 1
     updateScoreBoard("player")
+    console.log(playerScore)
     result.textContent = "You win!"
   } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
     pcScore += 1
     updateScoreBoard("pc")
+    console.log(pcScore)
     result.textContent = "You lose!"
   } else {
     console.log("tie")
+    console.log(playerScore)
+    console.log(pcScore)
     result.textContent = "It's a tie!"
   }
 }
@@ -56,21 +60,23 @@ function updateScoreBoard(winner) {
 }
 
 function addPlayerPoints() {
-  const playerPoints = document.querySelectorAll("#player-points > img")
+  const playerPoints = document.querySelectorAll("#player-points > img#noPoint")
+  console.log(playerPoints)
   for (point of playerPoints) {
-    if (point.src != "img/star_point.png") {
-      point.src = "img/star_point.png"
-      break
-    }
+    console.log(point)
+    point.src = "img/star_point.png"
+    point.id = "point"
+    break
   }
 }
 function addPcPoints() {
-  const pcPoints = document.querySelectorAll("#pc-points > img")
+  const pcPoints = document.querySelectorAll("#pc-points > img#noPoint")
+  console.log(pcPoints)
   for (point of pcPoints) {
-    if (point.src != "img/star_point.png") {
-      point.src = "img/star_point.png"
-      break
-    }
+    console.log(point)
+    point.src = "img/star_point.png"
+    point.id = "point"
+    break
   }
 }
 
@@ -86,4 +92,11 @@ function reset() {
   pcPick.textContent = "Waiting for the opponent"
   pcWeapon.innerHTML = '<div class="loader"></div> '
   result.textContent = ""
+  document.querySelectorAll("#player-choices > img").forEach((element) => {
+    element.addEventListener("click", (event) => {
+      const choice = event.target.id
+      const pcChoice = Math.floor(Math.random() * 3)
+      playGame(choice, pcChoice)
+    })
+  })
 }
