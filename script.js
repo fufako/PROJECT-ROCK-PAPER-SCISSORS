@@ -16,7 +16,7 @@ document.querySelectorAll("#player-choices > img").forEach((element) => {
 function playGame(choice, pcChoice) {
   playRound(choice, pcChoice)
   changeContent(choice, pcChoice)
-  setTimeout(playAgain, 2000)
+  setTimeout(playAgain, 2500)
 }
 
 let playerScore = 0
@@ -28,17 +28,17 @@ function playRound(choice, pcChoice) {
     playerScore += 1
     updateScoreBoard("player")
     console.log(playerScore)
-    result.textContent = "You win!"
+    result.innerHTML = "You <b>win</b>!"
   } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
     pcScore += 1
     updateScoreBoard("pc")
     console.log(pcScore)
-    result.textContent = "You lose!"
+    result.innerHTML = "You <b>lose</b>!"
   } else {
     console.log("tie")
     console.log(playerScore)
     console.log(pcScore)
-    result.textContent = "It's a tie!"
+    result.innerHTML = "It's a <b>tie</b>!"
   }
 }
 function changeContent(choice, pcChoice) {
@@ -101,7 +101,7 @@ function playAgain() {
     body.appendChild(container)
     container.appendChild(results)
     container.appendChild(playAgainBtn)
-    playAgainBtn.textContent = "Play again"
+    playAgainBtn.textContent = "Play again?"
 
     if (playerScore == 3) {
       results.innerHTML = "You <b>won</b>! <br>" + playerScore + ":" + pcScore
