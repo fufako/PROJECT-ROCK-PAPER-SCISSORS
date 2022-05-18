@@ -16,29 +16,28 @@ document.querySelectorAll("#player-choices > img").forEach((element) => {
 function playGame(choice, pcChoice) {
   playRound(choice, pcChoice)
   changeContent(choice, pcChoice)
-  setTimeout(playAgain, 2500)
+  setTimeout(reset, 2000)
 }
 
-let playerScore = 0
-let pcScore = 0
 function playRound(choice, pcChoice) {
   const result = document.getElementById("round-result")
-
+  let playerScore = 0
+  let pcScore = 0
   if (weakStrong[choice].strongTo === weapons[pcChoice]) {
     playerScore += 1
     updateScoreBoard("player")
     console.log(playerScore)
-    result.innerHTML = "You <b>win</b>!"
+    result.textContent = "You win!"
   } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
     pcScore += 1
     updateScoreBoard("pc")
     console.log(pcScore)
-    result.innerHTML = "You <b>lose</b>!"
+    result.textContent = "You lose!"
   } else {
     console.log("tie")
     console.log(playerScore)
     console.log(pcScore)
-    result.innerHTML = "It's a <b>tie</b>!"
+    result.textContent = "It's a tie!"
   }
 }
 function changeContent(choice, pcChoice) {
@@ -62,7 +61,9 @@ function updateScoreBoard(winner) {
 
 function addPlayerPoints() {
   const playerPoints = document.querySelectorAll("#player-points > img#noPoint")
+  console.log(playerPoints)
   for (point of playerPoints) {
+    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
@@ -70,42 +71,12 @@ function addPlayerPoints() {
 }
 function addPcPoints() {
   const pcPoints = document.querySelectorAll("#pc-points > img#noPoint")
+  console.log(pcPoints)
   for (point of pcPoints) {
+    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
-  }
-}
-
-function playAgain() {
-  const body = document.getElementById("container")
-  const container = document.createElement("div")
-  const results = document.createElement("div")
-  const playAgainBtn = document.createElement("button")
-  const refreshPage = () => {
-    location.reload()
-  }
-  if (playerScore != 3 && pcScore != 3) {
-    reset()
-  } else {
-    body.innerHTML = ""
-    results.id = "results"
-    playAgainBtn.id = "again-btn"
-    playAgainBtn.type = "button"
-    container.id = "results-container"
-    body.appendChild(header)
-    body.appendChild(container)
-    container.appendChild(results)
-    container.appendChild(playAgainBtn)
-    playAgainBtn.textContent = "Play again?"
-
-    if (playerScore == 3) {
-      results.innerHTML = "You <b>won</b>! <br>" + playerScore + ":" + pcScore
-      playAgainBtn.addEventListener("click", refreshPage)
-    } else if (pcScore == 3) {
-      results.innerHTML = "You <b>lose</b>! <br>" + playerScore + ":" + pcScore
-      playAgainBtn.addEventListener("click", refreshPage)
-    }
   }
 }
 
@@ -115,7 +86,6 @@ function reset() {
   const pcPick = document.getElementById("pc-info")
   const pcWeapon = document.getElementById("pc-choices")
   const result = document.getElementById("round-result")
-
   playerWeapon.innerHTML =
     '<img src="img/rock.png" alt="rock" id="rock" /> <img src="img/paper.png" alt="paper" id="paper" /> <img src="img/scissors.png" alt="scissors" id="scissors" /> '
   playerPick.textContent = "Make your pick"

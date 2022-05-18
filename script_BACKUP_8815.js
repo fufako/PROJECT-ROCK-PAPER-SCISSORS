@@ -27,6 +27,15 @@ function playRound(choice, pcChoice) {
   if (weakStrong[choice].strongTo === weapons[pcChoice]) {
     playerScore += 1
     updateScoreBoard("player")
+<<<<<<< HEAD
+    result.textContent = "You win!"
+  } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
+    pcScore += 1
+    updateScoreBoard("pc")
+    result.textContent = "You lose!"
+  } else {
+    result.textContent = "It's a tie!"
+=======
     console.log(playerScore)
     result.innerHTML = "You <b>win</b>!"
   } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
@@ -39,6 +48,7 @@ function playRound(choice, pcChoice) {
     console.log(playerScore)
     console.log(pcScore)
     result.innerHTML = "It's a <b>tie</b>!"
+>>>>>>> tmp2
   }
 }
 function changeContent(choice, pcChoice) {

@@ -62,7 +62,9 @@ function updateScoreBoard(winner) {
 
 function addPlayerPoints() {
   const playerPoints = document.querySelectorAll("#player-points > img#noPoint")
+  console.log(playerPoints)
   for (point of playerPoints) {
+    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
@@ -70,7 +72,9 @@ function addPlayerPoints() {
 }
 function addPcPoints() {
   const pcPoints = document.querySelectorAll("#pc-points > img#noPoint")
+  console.log(pcPoints)
   for (point of pcPoints) {
+    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
