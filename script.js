@@ -26,17 +26,12 @@ function playRound(choice, pcChoice) {
   if (weakStrong[choice].strongTo === weapons[pcChoice]) {
     playerScore += 1
     updateScoreBoard("player")
-    console.log(playerScore)
     result.textContent = "You win!"
   } else if (weakStrong[choice].weakTo === weapons[pcChoice]) {
     pcScore += 1
     updateScoreBoard("pc")
-    console.log(pcScore)
     result.textContent = "You lose!"
   } else {
-    console.log("tie")
-    console.log(playerScore)
-    console.log(pcScore)
     result.textContent = "It's a tie!"
   }
 }
@@ -61,9 +56,7 @@ function updateScoreBoard(winner) {
 
 function addPlayerPoints() {
   const playerPoints = document.querySelectorAll("#player-points > img#noPoint")
-  console.log(playerPoints)
   for (point of playerPoints) {
-    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
@@ -71,9 +64,7 @@ function addPlayerPoints() {
 }
 function addPcPoints() {
   const pcPoints = document.querySelectorAll("#pc-points > img#noPoint")
-  console.log(pcPoints)
   for (point of pcPoints) {
-    console.log(point)
     point.src = "img/star_point.png"
     point.id = "point"
     break
