@@ -16,13 +16,14 @@ document.querySelectorAll("#player-choices > img").forEach((element) => {
 function playGame(choice, pcChoice) {
   playRound(choice, pcChoice)
   changeContent(choice, pcChoice)
-  setTimeout(reset, 2000)
+  setTimeout(playAgain, 2000)
 }
 
+let playerScore = 0
+let pcScore = 0
 function playRound(choice, pcChoice) {
   const result = document.getElementById("round-result")
-  let playerScore = 0
-  let pcScore = 0
+
   if (weakStrong[choice].strongTo === weapons[pcChoice]) {
     playerScore += 1
     updateScoreBoard("player")
@@ -80,12 +81,45 @@ function addPcPoints() {
   }
 }
 
+function playAgain() {
+  const body = document.getElementById("container")
+  const container = document.createElement("div")
+  const results = document.createElement("div")
+  const playAgainBtn = document.createElement("button")
+  const refreshPage = () => {
+    location.reload()
+  }
+  if (playerScore != 3 && pcScore != 3) {
+    reset()
+  } else {
+    body.innerHTML = ""
+    results.id = "results"
+    playAgainBtn.id = "again-btn"
+    playAgainBtn.type = "button"
+    container.id = "results-container"
+    body.appendChild(header)
+    body.appendChild(container)
+    container.appendChild(results)
+    container.appendChild(playAgainBtn)
+    playAgainBtn.textContent = "Play again"
+
+    if (playerScore == 3) {
+      results.innerHTML = "You <b>won</b>! <br>" + playerScore + ":" + pcScore
+      playAgainBtn.addEventListener("click", refreshPage)
+    } else if (pcScore == 3) {
+      results.innerHTML = "You <b>lose</b>! <br>" + playerScore + ":" + pcScore
+      playAgainBtn.addEventListener("click", refreshPage)
+    }
+  }
+}
+
 function reset() {
   const playerPick = document.getElementById("player-info")
   const playerWeapon = document.getElementById("player-choices")
   const pcPick = document.getElementById("pc-info")
   const pcWeapon = document.getElementById("pc-choices")
   const result = document.getElementById("round-result")
+
   playerWeapon.innerHTML =
     '<img src="img/rock.png" alt="rock" id="rock" /> <img src="img/paper.png" alt="paper" id="paper" /> <img src="img/scissors.png" alt="scissors" id="scissors" /> '
   playerPick.textContent = "Make your pick"
